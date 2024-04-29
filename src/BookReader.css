@@ -4,48 +4,123 @@ body {
     background-color: #2e3537;
     font-family: 'Libre Baskerville', serif; /* Baskerville font */
     font-size: 16px;
+    overflow-x: hidden;
 
 }
 
 .container {
     background-color: #2e3537;
-    width: 900px;
+    width: 800px;
     margin: auto; /* Center the container */
 }
 
-.navigation {
-    width: 100%;
+.main-title {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    padding-top: 5rem;
+    margin-left: 5rem;
+    font-size: 40px;
+    color: white;
+}
+
+
+.helper {
+    transform: translateY(6rem);
     display: flex;
-    justify-content: flex-end; /* Aligns the navigation link to the right */
-    padding: 20px 0;
-    background-color: #2e3537; /* Light grey background for the navigation bar */
+    /* align-items: center; */
+    justify-content: center;
+    font-size: 15px;
+    color: white; /* Adjust color as needed */
 }
 
-.navigation a {
-    text-decoration: none;
-    color: white; /* Existing style for text color */
-    padding: 10px 20px;
-    font-weight: bold;
-    position: relative; /* Needed for positioning the pseudo-element */
-    display: inline-block; /* Ensures the pseudo-element aligns correctly */
+.bouncing-arrow {
+    margin-left: 10px;
+    animation: bounce 2s infinite;
 }
 
-.navigation a::after {
-    content: ''; /* Required for pseudo-elements */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(5px);
+    }
+    40% {
+        transform: translateY(-25px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease forwards;
+}
+
+.fade-out {
+    animation: fadeOut 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+
+.navigation {
+    display: flex;
+    justify-content: flex-end !important; /* Aligns items to the right of the container */
+    padding-top: 4rem;
+    padding-right: 1.5rem;
+    background-color: #2e3537; /* Matches the design theme */
+}
+
+.workbookbutton {
+    font-size: 15px;
+    color: white;
     display: block;
-    width: 20px;
-    width: 55%; /* Match the width of the link */
-    height: 3px; /* Height of the underline stroke */
-    background-color: white; /* Same as the link color */
-    border-radius: 5px; /* Rounded edges */
-    position: absolute;
-    left: 30px;
-    bottom: 2px; /* Adjust the position below the text */
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    padding: 8px 15px;
+    border: 2px solid #ccc;
+    background-color: transparent;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.navigation a:hover::after {
-    background-color: #ccc; /* Change color on hover if needed */
+.workbookbutton:hover {
+    color: #2e3537;
+    background-color: #f0f0f0;
+}
+
+.sound-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Circular button size */
+    height: 40px;
+    border: 1.5px solid white; /* White border */
+    border-radius: 50%; /* Make it circular */
+    background-color: transparent; /* Transparent background */
+    color: white; /* Icon color */
+    font-size: 16px; /* Adjust based on your design */
+    cursor: pointer;
+    margin-left: 10px; /* Spacing between this button and the Workbook button */
+}
+
+.sound-button:hover {
+    background-color: #f0f0f0; /* Light background on hover */
+    color: #2e3537; /* Change icon color on hover */
 }
 
 
@@ -63,10 +138,11 @@ body {
     font-size: 14px;
     line-height: 2.4;
     background-color: #2e3537;
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     justify-content: center;
-    padding-top: 4rem;
+    padding-top: 1.5rem;
+    padding-bottom: 0rem;
 }
 
 .book-reader h2 {
@@ -103,7 +179,7 @@ input {
 
 .cover,
 .back-cover {
-    background-color: #7c5789;
+    background-color: #755a49;
     width: 100%;
     height: 100%;
     border-radius: 0 15px 15px 0;
@@ -118,7 +194,33 @@ input {
     position: absolute;
     z-index: 6;
     transition: transform 0.6s 0.1s; /* Add a delay to the cover transition */
+    width: 100%; /* Ensure it takes full width of its parent */
+    height: 100%; /* Ensure it takes full height of its parent */
+    overflow: hidden; /* Hide anything that goes beyond this container */
 }
+
+.cover-video {
+    border-radius: 0 15px 15px 0;
+    opacity: 0.2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the entire area without distorting ratio */
+    position: absolute; /* Position it absolutely to overlay properly */
+    top: 0;
+    left: 0;
+    z-index: 1; /* Ensure video is behind the label for clicking */
+}
+
+.cover label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 2; /* Ensures label is clickable, on top of the video */
+}
+
 
 .cover label {
     width: 100%;
@@ -266,32 +368,91 @@ input {
     margin: 0rem 0.3rem;
     padding: 0rem 0.4rem;
     color: inherit;  /* Keeps the text color unchanged */
-    background-color: #edd0f8;  /* The highlight color */
+    background-color: #f8d4a5;  /* The highlight color */
     border-radius: 7px;
     position: relative;
     cursor: pointer;
+ 
+}
+.tooltip img {
+    border-radius: 20px;
 }
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 400px;  /* Adjust this width to fit your content or design needs */
-    background-color: #f9f9f9;  /* Background color for the tooltip */
-    color: #000;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
+    /* height: 100%; */
+    width: 350px;  /* Adjust this width to fit your content or design needs */
+    /* text-align: center; */
+    background-color: white;
+    border: 0.5px solid rgb(152, 152, 152);
+
+    padding: 5px;
     position: fixed;  /* Changed from absolute to fixed to position relative to the viewport */
     z-index: 1000;  /* Ensure it's on top of other elements */
     top: 50%;  /* Center vertically */
-    left: 165%;  /* Center horizontally */
+    left: 140%;  /* Center horizontally */
     transform: translate(-50%, -50%);  /* Adjust the translation to perfectly center it */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Optional: Adds shadow to the tooltip box */
+    box-shadow: -2px 2px 30px 0px rgba(116, 116, 116, 0.6);  /* Optional: Adds shadow to the tooltip box */
     opacity: 0;
     transition: opacity 0.3s, visibility 0.3s;
+    border-radius: 20px;
+
 }
+
+
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
 }
 
+.content-title {
+    padding-left: 2rem;
+}
+
+.content-title h1 {
+    margin-left: 20px; /* Start the paragraph slightly indented for aesthetics */
+
+    font-size: 19px;
+    text-align: left; /* Center align the title */
+    color: white; /* Set the color of the title */
+    margin-top: 6rem; /* Adjust spacing as needed */
+    padding-bottom: 1.4rem;
+}
+
+.content-title h2 {
+    margin-top: 2.3rem;
+    margin-left: 20px; /* Start the paragraph slightly indented for aesthetics */
+
+    font-size: 14px;
+    text-align: left; /* Center align the title */
+    color: white; /* Set the color of the title */
+}
+
+
+.content-title p {
+    line-height: 2;
+    text-align: left; /* Left align the paragraph */
+    color: white; /* Set the color of the paragraph */
+    margin-left: 20px; /* Start the paragraph slightly indented for aesthetics */
+    font-size: 14px;
+}
+
+
+.toggle-button {
+    font-size: 15px;
+    color: white;
+    display: block;
+    margin: 40px auto;
+    padding: 15px 30px;
+    border: 2px solid #ccc;
+    background-color: transparent;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+    color: #2e3537;
+    background-color: #f0f0f0;
+}
