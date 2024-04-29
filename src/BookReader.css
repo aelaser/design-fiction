@@ -1,186 +1,297 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap');
 
 body {
-  background-color: #2e3537;
+    background-color: #2e3537;
+    font-family: 'Libre Baskerville', serif; /* Baskerville font */
+    font-size: 16px;
 
 }
+
 .container {
-  background-color: #2e3537;
-  width: 900px;
-  margin: auto; /* Center the container */
+    background-color: #2e3537;
+    width: 900px;
+    margin: auto; /* Center the container */
 }
 
 .navigation {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end; /* Aligns the navigation link to the right */
-  padding: 10px 0;
-  background-color: #2e3537; /* Light grey background for the navigation bar */
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Aligns the navigation link to the right */
+    padding: 20px 0;
+    background-color: #2e3537; /* Light grey background for the navigation bar */
 }
 
 .navigation a {
-  text-decoration: none;
-  color: white; /* Dark text color for visibility */
-  padding: 10px 20px;
-  font-weight: bold;
+    text-decoration: none;
+    color: white; /* Existing style for text color */
+    padding: 10px 20px;
+    font-weight: bold;
+    position: relative; /* Needed for positioning the pseudo-element */
+    display: inline-block; /* Ensures the pseudo-element aligns correctly */
+}
+
+.navigation a::after {
+    content: ''; /* Required for pseudo-elements */
+    display: block;
+    width: 20px;
+    width: 55%; /* Match the width of the link */
+    height: 3px; /* Height of the underline stroke */
+    background-color: white; /* Same as the link color */
+    border-radius: 5px; /* Rounded edges */
+    position: absolute;
+    left: 30px;
+    bottom: 2px; /* Adjust the position below the text */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.navigation a:hover::after {
+    background-color: #ccc; /* Change color on hover if needed */
 }
 
 
 .book.translate {
-  transform: translateX(200px);
+    transform: translateX(200px);
 }
 
 .cover.rotate,
 .page.rotate {
-  transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
 }
 
 .book-reader {
-  font-family: 'Libre Baskerville', serif; /* Baskerville font */
-  font-size: 13px;
-  line-height: 2;
-  background-color: #2e3537;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    font-family: 'Libre Baskerville', serif; /* Baskerville font */
+    font-size: 14px;
+    line-height: 2.4;
+    background-color: #2e3537;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-top: 4rem;
 }
 
 .book-reader h2 {
-  text-align: center;
+    text-align: center;
 }
 
+.page-number {
+  color: grey;
+  font-size: 13px;
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
 .book-reader p {
-  text-align: justify;
-  padding: 0 1rem;
-  padding-top: 1rem;
+    text-align: justify;
+    padding: 0 1.4rem;
+    padding-top: 0rem;
 }
 
 .book {
-  width: 350px;
-  height: 450px;
-  position: relative;
-  transition-duration: 1s;
-  perspective: 1500px;
+    width: 350px;
+    height: 450px;
+    position: relative;
+    transition-duration: 1s;
+    perspective: 1500px;
 }
 
 input {
-  display: none;
+    display: none;
 }
 
 .cover,
 .back-cover {
-  background-color: #7c5789;
-  width: 100%;
-  height: 100%;
-  border-radius: 0 15px 15px 0;
-  box-shadow: 0 0 5px rgb(41, 41, 41);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform-origin: center left;
+    background-color: #7c5789;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 15px 15px 0;
+    box-shadow: 0 0 5px rgb(41, 41, 41);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center left;
 }
 
 .cover {
-  position: absolute;
-  z-index: 4;
-  transition: transform 0.6s 0.1s; /* Add a delay to the cover transition */
+    position: absolute;
+    z-index: 6;
+    transition: transform 0.6s 0.1s; /* Add a delay to the cover transition */
 }
 
 .cover label {
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
 
 .back-cover {
-  position: relative;
-  z-index: -1;
+    position: relative;
+    z-index: -1;
 }
 
 .page {
-  position: absolute;
-  background-color: white;
-  width: 330px;
-  height: 430px;
-  border-radius: 0 15px 15px 0;
-  margin-top: 10px;
-  transform-origin: left;
-  transform-style: preserve-3d;
-  transform: rotateY(0deg);
-  transition-duration: 1s;
+    position: absolute;
+    background-color: white;
+    width: 330px;
+    height: 430px;
+    border-radius: 0 15px 15px 0;
+    margin-top: 10px;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    transition-duration: 1s;
 }
 
 .page img {
-  width: 100%;
-  height: 100%;
-  border-radius: 15px 0 0 15px;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px 0 0 15px;
 }
 
 .front-page,
 .back-page {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  box-sizing: border-box;
-  padding: 1rem;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    box-sizing: border-box;
+    padding: 1rem;
 }
 
 .back-page {
-  transform: rotateY(180deg);
-  background-color: white; /* Add this line to set the background color of the back page */
-  border-radius: 15px 0 0 15px;
-
+    transform: rotateY(180deg);
+    background-color: white; /* Add this line to set the background color of the back page */
+    border-radius: 15px 0 0 15px;
 }
 
 .next,
 .prev {
-  position: absolute;
-  bottom: 1em;
-  cursor: pointer;
+    position: absolute;
+    bottom: 1em;
+    cursor: pointer;
 }
 
 .next {
-  right: 1em;
+    right: 1em;
 }
 
 .prev {
-  left: 1em;
+    left: 1em;
 }
 
 #page1 {
-  z-index: 3;
+    z-index: 5;
 }
 
 #page2 {
-  z-index: 2;
+    z-index: 4;
 }
 
 #page3 {
+    z-index: 3;
+}
+
+#page4 {
+    z-index: 2;
+}
+
+#page5 {
   z-index: 1;
+}
+
+#page6 {
+  z-index: 0;
 }
 
 #checkbox-cover:checked ~ .book {
-  transform: translateX(200px);
+    transform: translateX(200px);
 }
 
 #checkbox-cover:checked ~ .book .cover {
-  transition: transform 0.5s; /* Remove the delay from the cover transition */
-  transform: rotateY(-180deg);
-  z-index: 1;
+    transition: transform 0.5s; /* Remove the delay from the cover transition */
+    transform: rotateY(-180deg);
+    z-index: 1;
 }
 
 #checkbox-cover:checked ~ .book .page {
-  box-shadow: 0 0 3px rgb(99, 98, 98);
+    box-shadow: 0 0 3px rgb(99, 98, 98);
 }
 
 #checkbox-page1:checked ~ .book #page1 {
-  transform: rotateY(-180deg);
-  z-index: 2;
+    transform: rotateY(-180deg);
+    z-index: 2;
 }
 
 #checkbox-page2:checked ~ .book #page2 {
-  transform: rotateY(-180deg);
-  z-index: 3;
+    transform: rotateY(-180deg);
+    z-index: 3;
 }
+
+#checkbox-page3:checked ~ .book #page3 {
+    transform: rotateY(-180deg);
+    z-index: 4;
+}
+
+#checkbox-page4:checked ~ .book #page4 {
+    transform: rotateY(-180deg);
+    z-index: 5;
+}
+
+#checkbox-page5:checked ~ .book #page5 {
+  transform: rotateY(-180deg);
+  z-index: 6;
+}
+
+#checkbox-page6:checked ~ .book #page6 {
+  transform: rotateY(-180deg);
+  z-index: 7;
+}
+
+.chapter1 {
+    margin-top: 5rem;
+}
+
+.divider-image {
+    display: block;
+    width: 180px !important; /* Adjust width as needed */
+    margin: 0px auto; /* Centers the image horizontally and adds vertical spacing */
+    margin-bottom: 1.5rem;
+    transform: translateY(-7px);
+}
+
+
+.tooltip {
+    margin: 0rem 0.3rem;
+    padding: 0rem 0.4rem;
+    color: inherit;  /* Keeps the text color unchanged */
+    background-color: #edd0f8;  /* The highlight color */
+    border-radius: 7px;
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 400px;  /* Adjust this width to fit your content or design needs */
+    background-color: #f9f9f9;  /* Background color for the tooltip */
+    color: #000;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: fixed;  /* Changed from absolute to fixed to position relative to the viewport */
+    z-index: 1000;  /* Ensure it's on top of other elements */
+    top: 50%;  /* Center vertically */
+    left: 165%;  /* Center horizontally */
+    transform: translate(-50%, -50%);  /* Adjust the translation to perfectly center it */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Optional: Adds shadow to the tooltip box */
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
