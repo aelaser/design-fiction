@@ -102,6 +102,7 @@ function BookReader() {
         <div className="container">
             <h1 className='main-title'>Design Fiction</h1>
             <h1 className='main-title sub-title'>Stephanie Kim, Amin El Asery</h1>
+            <h1 className='main-title sub-title caption'>*For a better experience, please use Chrome or Firefox</h1>
             <div className={`helper ${coverOpen ? 'fade-out' : 'fade-in'}`}>
                 <span>Click to Explore</span>
                 <i className="fas fa-arrow-down bouncing-arrow"></i>

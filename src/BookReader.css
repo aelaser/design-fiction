@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&@300display=swap');
 
 body {
     /* background-color: #2e3537; */
@@ -31,9 +31,21 @@ body {
 }
 
 .sub-title {
-    /* transform: translateY(0.4rem); */
+    transform: translateY(-0.5rem);
     padding-top: 1rem;
-    font-size: 13px;
+    font-size: 11px;
+    font-weight: 300;
+   
+
+    
+}
+
+.caption {
+    transform: translateY(1rem); 
+    font-weight: 300;
+    font-size: 12px;
+    padding-bottom: 1rem;
+    /* font-style: italic */
 }
 
 
